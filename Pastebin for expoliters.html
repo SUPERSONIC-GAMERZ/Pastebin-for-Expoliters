@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Script Sharing</title>
+  </head>
+  <body>
+    <h1>Script Sharing</h1>
+    <form>
+      <label for="title">Title:</label>
+      <input type="text" id="title" name="title"><br>
+      <label for="script">Script:</label><br>
+      <textarea id="script" name="script" rows="10" cols="50"></textarea><br>
+      <button type="submit">Share</button>
+    </form>
+    <hr>
+    <h2>Shared Scripts:</h2>
+    <ul id="script-list"></ul>
+    <script>
+      const form = document.querySelector('form');
+      const titleInput = document.querySelector('#title');
+      const scriptInput = document.querySelector('#script');
+      const scriptList = document.querySelector('#script-list');
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        const title = titleInput.value.trim();
+        const script = scriptInput.value.trim();
+        if (!title || !script) {
+          alert('Title and script are required.');
+          return;
+        }
+        const li = document.createElement('li');
+        const h3 = document.createElement('h3');
+        h3.textContent = title;
+        const pre = document.createElement('pre');
+        pre.textContent = script;
+        li.appendChild(h3);
+        li.appendChild(pre);
+        scriptList.appendChild(li);
+        titleInput.value = '';
+        scriptInput.value = '';
+      });
+    </script>
+  </body>
+</html>
+
